@@ -1,0 +1,6 @@
+<ul style="list-style-type:disc;">
+    <li><button (click)="getCategoryName($event)" value="">Tous</button></li>
+    <li *ngFor="let c of categories | async">
+        <button (click)="getCategoryName($event)" value="{{c.nom}}">{{c.libelle}}</button>
+    </li>
+</ul> 

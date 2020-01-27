@@ -1,0 +1,49 @@
+Confiserie:
+    type: entity
+    table: confiserie
+    indexes:
+        idCategorie:
+            columns:
+                - idCategorie
+    id:
+        idconfiserie:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: idConfiserie
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        idcategorie:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: idCategorie
+        prixunitaire:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: prixUnitaire
+        img:
+            type: string
+            nullable: false
+            length: 2083
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

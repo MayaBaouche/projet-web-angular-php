@@ -1,0 +1,15 @@
+.card {
+  width: 100%; 
+  padding: 20px; 
+  text-align: center; 
+}
+img {
+  width: 50%;
+  height: auto;
+  text-align: center; 
+}
+.wrapper {
+  margin: auto;
+  padding: 20px;
+  text-align: center; 
+}
