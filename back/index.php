@@ -39,8 +39,7 @@ $app->get('/product/{id}', function ($request, $response, $args) use ($entityMan
 {
     $productById =   $entityManager
                             ->getRepository('Confiserie')
-                            ->findOneBy(array('idconfiserie' => $args['id']))
-                            ->getResult();
+                            ->findOneBy(array('idconfiserie' => $args['id']));
     return $response->withJSON($productById);
 });
 
@@ -51,7 +50,8 @@ $app->get('/products', function($request, $response, $args) use ($entityManager)
                 ->createQueryBuilder('c')
                 ->getQuery()
                 ->getArrayResult(); 
-    return $response->withJSON($products);
+    return $response->WithStatus(200)
+                    ->withJSON($products);
 });
 
 $app->get('/productsFiltered', function ($request, $response, $args) use ($entityManager)

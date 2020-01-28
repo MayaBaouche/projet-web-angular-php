@@ -19,42 +19,42 @@ class Confiserie
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idconfiserie;
+    public $idconfiserie;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
-    private $nom;
+    public $nom;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
-    private $description;
+    public $description;
 
     /**
      * @var int
      *
      * @ORM\Column(name="idCategorie", type="integer", nullable=false)
      */
-    private $idcategorie;
+    public $idcategorie;
 
     /**
      * @var float|null
      *
      * @ORM\Column(name="prixUnitaire", type="float", precision=10, scale=0, nullable=true)
      */
-    private $prixunitaire;
+    public $prixunitaire;
 
     /**
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=2083, nullable=false)
      */
-    private $img;
+    public $img;
 
 
     /**

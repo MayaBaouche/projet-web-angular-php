@@ -91,7 +91,7 @@ export class ApiService {
 
   getProductById(productId: number): Observable<Product>
   {
-    return this.httpClient.get<Product>(environment.productById+"/"+productId)
+    return this.httpClient.get<Product>(environment.backend+"/product/"+productId)
       .pipe(
         catchError(this.handleError)
       );

@@ -23,8 +23,7 @@ export class ListProductsComponent
 
   constructor(public listProductService: ApiService, private store: Store) 
   {    
-    this.products = this.listProductService.getProducts(); 
-    this.filtered = this.products; 
+    this.filtered = this.listProductService.getProductsByFilters("", ""); 
   }
 
   searchProductByName(filterValue : string)

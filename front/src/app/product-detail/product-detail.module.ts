@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductDetailComponent } from './product-detail.component';
 import { RouterModule, Routes } from '@angular/router';
 
-export const detailRoutes:Routes = [
-    
+export const detailRoutes:Routes = [    
         { 
           path: '',
           component: ProductDetailComponent 

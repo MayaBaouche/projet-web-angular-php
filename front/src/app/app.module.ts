@@ -15,6 +15,7 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductDetailModule } from './product-detail/product-detail.module'; 
 import { Error404Module } from './error-404/error-404.module';
 import { LoginModule } from './login/login.module'; 
+import { PaiementModule } from './paiement/paiement.module'; 
 
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { NgxsModule } from '@ngxs/store';
@@ -33,7 +34,11 @@ const routes: Routes = [
   { 
     path: 'products', 
     loadChildren: () => import( './list-products/list-products.module').then(m=> m.ListProductsModule)
-  }, 
+  },   
+  { 
+    path: 'paiement', 
+    loadChildren: () => import( './paiement/paiement.module').then(m=> m.PaiementModule)
+  },
   { 
     path: 'registration', 
     loadChildren: () => import( './form/form.module').then(m => m.FormModule)
@@ -67,7 +72,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HomeModule, ListProductsModule, FormModule, ReactiveFormsModule, ShoppingCartModule, Error404Module, LoginModule, 
-  EspaceClientModule,NgxsModule.forRoot([ShoppingCartState]), RouterModule.forRoot(routes)],
+  EspaceClientModule, PaiementModule, NgxsModule.forRoot([ShoppingCartState]), RouterModule.forRoot(routes)],
   declarations: [AppComponent, TetiereComponent, FooterComponent],
   providers: [ApiService],
   bootstrap:    [ AppComponent ]
