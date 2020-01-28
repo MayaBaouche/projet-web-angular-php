@@ -87,11 +87,11 @@ $app->post('/register', function ($request, $response, $args) use ($entityManage
     $clientRepository = $entityManager->getRepository('Client');
     $response = $response->withStatus(400);
     $error_messages = array();
-    if($clientRepository->findOneBy(array('login' => $params['login'])) !== null)
+    if($clientRepository->findOneBy(array('login' => $body['login'])) !== null)
     {
         array_push($error_messages, "mail already used.");
     }
-    if($clientRepository->findOneBy(array('mail' => $params['mail'])) !== null)
+    if($clientRepository->findOneBy(array('mail' => $body['mail'])) !== null)
     {
         array_push($error_messages, "mail already used.");
     }

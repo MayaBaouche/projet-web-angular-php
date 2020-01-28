@@ -5,54 +5,26 @@
       <h6>Veuillez saisir vos coordonnées afin de procéder à la création de votre compte.</h6>
     </div> 
     <form [formGroup]="userDetails" (ngSubmit)="onSubmit()">    
-        <div class="form-check form-check-inline">
-          <input type="radio" value="Madame" id="female"  class="form-check-input" formControlName="gender"/> 
-          <label class="form-check-label">Femme</label>
-        </div>        
-        <div class="form-check form-check-inline">   
-          <input type="radio" id="male" value="Monsieur" class="form-check-input"  formControlName="gender"/>
-          <label class="form-check-label">Homme</label>  
-        </div>      
-      <div *ngIf="isSubmitted && userValidation.gender.errors">
-        <p *ngIf="userValidation.gender.errors.required" field-error > Veuillez selectionner une option. </p>
-      </div>
       <div class="form-group">
         <label for="lastname">Nom</label>
-        <input type="text" id="lastname" formControlName="last_name"  class="form-control" required pattern="[A-Za-z]{1,32}"/>
+        <input type="text" id="lastname" formControlName="last_name" class="form-control" required pattern="[A-Za-z]{1,32}" [ngClass]="{'is-invalid': userDetails.controls.last_name.invalid && (userDetails.controls.last_name.touched || userDetails.controls.last_name.dirty), 'is-valid':userDetails.controls.last_name.valid && userDetails.controls.last_name.value != ''}"/>
       </div>
-      <div *ngIf="isSubmitted && userValidation.last_name.errors">
-        <p *ngIf="userValidation.last_name.errors.required" field-error > Le nom est un champ obligatoire. </p>
-        <p *ngIf="userValidation.last_name.hasError('pattern')" field-error > Le nom doit être composé de 1 à 32 lettres. </p>
-      </div>
-
       <div class="form-group" >      
         <label for="firstname">Prénom</label>
-        <input type="text" id="firstname" required formControlName="first_name" class="form-control"  pattern="[A-Za-z]{1,32}"/>     
+        <input type="text" id="firstname" required formControlName="first_name" class="form-control"  pattern="[A-Za-z]{1,32}" [ngClass]="{'is-invalid': userDetails.controls.first_name.invalid && (userDetails.controls.first_name.touched || userDetails.controls.first_name.dirty), 'is-valid':userDetails.controls.first_name.valid && userDetails.controls.first_name.value != ''}"/>     
       </div>      
-      <div *ngIf="isSubmitted && userValidation.first_name.errors">
-        <div *ngIf="userValidation.first_name.errors.required" field-error> Le prénom est un champ obligatoire. </div><br>
-        <div *ngIf="userValidation.first_name.hasError('pattern')" field-error> Le prénom doit être composé de 1 à 32 lettres. </div>
-      </div> 
-      
       <div class="form-group">
         <label for="address">Adresse</label>
-        <input type="text" id="address"  class="form-control"  required formControlName="adress"/>
+        <input type="text" id="address"  class="form-control"  required formControlName="adress" [ngClass]="{'is-invalid': userDetails.controls.adress.invalid && (userDetails.controls.adress.touched || userDetails.controls.adress.dirty), 'is-valid':userDetails.controls.adress.valid && userDetails.controls.adress.value != ''}"/>
       </div>
-      <div *ngIf="isSubmitted && userValidation.adress.errors">
-        <div *ngIf="userValidation.adress.errors.required" field-error> L'adresse est un champ obligatoire. </div>
-        </div>
-
       <div class="form-group mb-2">      
         <label for="postecode">Code postal</label>
-        <input type="text" id="postecode" class="form-control" formControlName="zip_code" pattern="[0-9]{5}"/>     
-      </div>
-      <div *ngIf="isSubmitted && userValidation.zip_code.errors">
-        <div *ngIf="userValidation.zip_code.hasError('pattern')" field-error> Le code postal doit être composé de 5 chiffres. </div>
+        <input type="text" id="postecode" class="form-control" formControlName="zip_code" pattern="[0-9]{5}" [ngClass]="{'is-invalid': userDetails.controls.zip_code.invalid && (userDetails.controls.zip_code.touched || userDetails.controls.zip_code.dirty), 'is-valid':userDetails.controls.zip_code.valid && userDetails.controls.zip_code.value != ''}"/>     
       </div>
       <div class="row">
         <div class="form-group col-6">
           <label for="city">Ville</label>
-          <input class="input-field col s6" type="text" id="city" class="form-control"  formControlName="city" pattern="[A-Za-z]*"/>         
+          <input class="input-field col s6" type="text" id="city" class="form-control"  formControlName="city" pattern="[A-Za-z]*" [ngClass]="{'is-invalid': userDetails.controls.city.invalid && (userDetails.controls.city.touched || userDetails.controls.city.dirty), 'is-valid':userDetails.controls.city.valid && userDetails.controls.city.value != ''}"/>         
         </div>
         <div class="form-group col-6">
           <label for="countr">Pays</label>
@@ -63,46 +35,27 @@
             <option value="+387">Bosnie-Herzégovine</option>
           </select>
         </div>
-        <div *ngIf="isSubmitted && userValidation.city.errors">
-          <div *ngIf="userValidation.city.hasError('pattern')" field-error> Le nom d'une ville ne doit contenir que des lettres. </div>
-        </div>
       </div>    
       <div class="form-group" >           
         <label for="phone">Téléphone</label>
-        <input type="tel" id="phone"  class="form-control" formControlName="phone" [value]="userDetails.get('phone').value | phoneCode: userDetails.get('dialCode').value"/>
+        <input type="tel" id="phone"  class="form-control" formControlName="phone" [value]="userDetails.get('phone').value | phoneCode: userDetails.get('dialCode').value" [ngClass]="{'is-invalid': userDetails.controls.phone.invalid && (userDetails.controls.phone.touched || userDetails.controls.phone.dirty), 'is-valid':userDetails.controls.phone.valid && userDetails.controls.phone.value != ''}"/>
       </div>
-      <div *ngIf="isSubmitted && userValidation.phone.errors">
-        <div *ngIf="userValidation.phone.hasError('pattern')" field-error> Veuillez saisir un numéro de téléphone valide. </div>
-      </div>
-
       <div class="form-group" >
         <label for="mail">Mail</label>
-        <input type="email" id="mail" formControlName="mail"  class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>           
+        <input type="email" id="mail" formControlName="mail"  class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [ngClass]="{'is-invalid': userDetails.controls.mail.invalid && (userDetails.controls.mail.touched || userDetails.controls.mail.dirty), 'is-valid':userDetails.controls.mail.valid && userDetails.controls.mail.value != ''}"/>           
       </div>
-      <div *ngIf="isSubmitted && userValidation.mail.errors">
-        <div *ngIf="userValidation.mail.hasError('pattern')" field-error> Veuillez saisir une adresse mail valide. </div>
-      </div>
-
       <div class="form-group" >       
         <label for="login">Login</label>
-        <input type="text" id="login" required formControlName="login"  class="form-control"  pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$"/>    
+        <input type="text" id="login" required formControlName="login"  class="form-control"  pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" [ngClass]="{'is-invalid': userDetails.controls.login.invalid && (userDetails.controls.login.touched || userDetails.controls.login.dirty), 'is-valid':userDetails.controls.login.valid && userDetails.controls.login.value != ''}"/>    
       </div>
-      <div *ngIf="isSubmitted && userValidation.login.errors">
-        <div *ngIf="userValidation.login.hasError('pattern')" field-error> Veuillez saisir un login valide. </div>
-      </div>
-
       <div class="form-group" >          
         <label for="passwd">Mot de passe</label>
-        <input type="password" id="password" required formControlName="password"  class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Il doit contenir une minuscule, une majuscule, un chiffre et un caractère!"/> 
-      </div>
-      <div *ngIf="isSubmitted && userValidation.password.errors">
-        <div *ngIf="userValidation.password.hasError('pattern')" field-error> Veuillez saisir un mot de passe valide. </div>
+        <input type="password" id="password" required formControlName="password"  class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Il doit contenir une minuscule, une majuscule, un chiffre et un caractère!" [ngClass]="{'is-invalid': userDetails.controls.password.invalid && (userDetails.controls.password.touched || userDetails.controls.password.dirty), 'is-valid':userDetails.controls.password.valid && userDetails.controls.password.value != ''}"/> 
       </div>
       <button type="submit">Valider</button>
     </form>	
   </div>
 </div>
-
 <div *ngIf="isSubmitted && createdUser | async as u">
   <div color="primary" class="col-12 card">
     <div class="card-body">

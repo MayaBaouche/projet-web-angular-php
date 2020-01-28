@@ -4,6 +4,7 @@ import { EspaceClientComponent } from './espace-client.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 export const espaceClientRoutes : Routes = [
   {
     path: '',
@@ -11,13 +12,12 @@ export const espaceClientRoutes : Routes = [
   }
 ];
 
-
 @NgModule({
   declarations: [EspaceClientComponent],
   imports: [
     CommonModule,
-    FormsModule,    //added here too
-    ReactiveFormsModule, //added here too
+    FormsModule,    
+    ReactiveFormsModule, 
     RouterModule.forChild(espaceClientRoutes)
   ]
 })

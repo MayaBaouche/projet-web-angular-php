@@ -12,43 +12,44 @@ import { Observable } from 'rxjs';
 
 export class FormComponent implements OnInit {
     userDetails : FormGroup; 
-    isSubmitted : boolean;
+    isSubmitted : boolean = false;
     dialCode : String;
 
     @Input() user : User;     
     createdUser: Observable<User>; 
 
   constructor(public userService: ApiService) {
-        this.userDetails = new FormGroup({
-            first_name:    new FormControl('', Validators.compose([
-                                            Validators.required, 
-                                            Validators.pattern('[A-Za-z]{1,32}')
-                                        ])),
-            last_name:     new FormControl('', Validators.compose([
-                                            Validators.required, 
-                                            Validators.pattern('[A-Za-z]{1,32}')
-                                        ])),
-            city:         new FormControl('', Validators.pattern('[A-Za-z]*')),
-            country:      new FormControl('', Validators.pattern('[A-Za-z]*')),
-            zip_code:    new FormControl('', Validators.pattern('[0-9]{5}')),
-            mail:        new FormControl('', Validators.compose([
-                                              Validators.required,
-                                              Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-                                        ])),
-            login:        new FormControl('', Validators.compose([
-                                              Validators.required,
-                                              Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
-                                        ])), 
-            password:     new FormControl('', Validators.compose([
-                                              Validators.required,
-                                              Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')
-                                          ]))
-                                        ,
-            phone:  new FormControl('', Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')),
-            adress:      new FormControl('', Validators.maxLength(256)),
-            gender:       new FormControl('', Validators.required),
-            dialCode:     new FormControl('',Validators.required) 
-          });
+        
+    this.userDetails = new FormGroup({
+      first_name:    new FormControl('', Validators.compose([
+                                      Validators.required, 
+                                      Validators.pattern('[A-Za-z]{1,32}')
+                                  ])),
+      last_name:     new FormControl('', Validators.compose([
+                                      Validators.required, 
+                                      Validators.pattern('[A-Za-z]{1,32}')
+                                  ])),
+      city:         new FormControl('', Validators.pattern('[A-Za-z]*')),
+      country:      new FormControl('', Validators.pattern('[A-Za-z]*')),
+      zip_code:    new FormControl('', Validators.pattern('[0-9]{5}')),
+      mail:        new FormControl('', Validators.compose([
+                                        Validators.required,
+                                        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                                  ])),
+      login:        new FormControl('', Validators.compose([
+                                        Validators.required,
+                                        Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$')
+                                  ])), 
+      password:     new FormControl('', Validators.compose([
+                                        Validators.required,
+                                        Validators.pattern('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')
+                                    ]))
+                                  ,
+      phone:  new FormControl('', Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')),
+      adress:      new FormControl('', Validators.maxLength(256)),
+      gender:       new FormControl('', Validators.required),
+      dialCode:     new FormControl('',Validators.required) 
+    });
     }
 
   // retourne une chaine permettant d'accèder aux controls
@@ -63,14 +64,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(){
-    // si formulaire non valide
-    if (this.userDetails.invalid)
-    {
-      // permet d'afficher les messages d'erreurs à la validation
-     console.log("là");
-      this.isSubmitted = true; 
-     return;
-    }
+
     // sinon on instancie un User et on lui affecte les 
     // valeurs des champs  
     this.user.last_name = this.userDetails.controls['last_name'].value; 

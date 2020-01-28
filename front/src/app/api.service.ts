@@ -107,7 +107,7 @@ export class ApiService {
       headers: headersHttp
     };
 
-    return this.httpClient.post<User>(environment.login, {login, password}, http)
+    return this.httpClient.post<User>(environment.backend+"/login", {login, password}, http)
       .pipe(
         catchError(this.handleError)
       ); 

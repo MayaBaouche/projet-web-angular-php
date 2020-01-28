@@ -1,0 +1,13 @@
+.gestion-compte 
+{
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+.gestion-compte > button 
+{
+    background-color: #eeb0c0;
+    color: black;
+}
