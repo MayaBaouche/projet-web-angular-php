@@ -16,6 +16,7 @@ Il faut avoir installé :
 
 * Cloner le dossier *back* du projet dans le répértoire *www* du serveur Apache.
 * Exécuter le script d'import de la base de données, situé dans le répértoire *back/chocolats.sql*. 
-* Lancer composer update.
-* Se placer dans le répertoire *front* et lancer npm install puis ng serve.
-* Naviguer vers localhost:4200/.
+* Penser à modifier les credentials de la base de données dans le fichier *back/bootstrap.php*.
+* Lancer *composer update*.
+* Se placer dans le répertoire *front* et lancer *npm install* puis *ng serve*.
+* Naviguer vers *localhost:4200/*.
