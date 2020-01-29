@@ -9,12 +9,12 @@
         <div class="col-4 d-flex align-items-stretch" *ngFor="let p of filtered | async; index as i">
           <div class="card mt-5">
             <img class="card-img-top" src="{{p.img}}" style="width: 100%">
-            <div class="card-block">
-              <h4 class="card-title">{{p.nom}}</h4> 
+            <div class="card-block card-contenu">
+              <h4 class="card-title font-type">{{p.nom}}</h4> 
               <p class="card-text">{{p.description}}</p>
-              <p class="card-text">{{p.prixunitaire}} €</p>
+              <p class="card-text" style="font-weight: bold;">{{p.prixunitaire}} €</p>
             </div>      
-            <button (click)="onAddClick(p)" class="btn btn-primary">Ajouter au panier</button>
+            <button (click)="onAddClick(p)" class="btn btn-primary btn-rose">Ajouter au panier</button>
             <button [routerLink]="['/detail', p.idconfiserie]" class="btn btn-secondary">Voir plus</button>
           </div> 
         </div> 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-espace-client',
@@ -8,11 +9,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EspaceClientComponent implements OnInit {
   connected : boolean = false ; 
-
-  constructor(private route: ActivatedRoute, public router: Router) 
+  login : string = ""
+  constructor(private route: ActivatedRoute, public router: Router, public apiService : ApiService) 
   { 
     if (sessionStorage.getItem('token') != undefined && sessionStorage.getItem('login') != undefined)
     {
+        this.login = sessionStorage.getItem('login');
         this.connected = true; 
     }
     else 
@@ -26,7 +28,11 @@ export class EspaceClientComponent implements OnInit {
   }
   OnDeleteAccount()
   {
-
+    if (sessionStorage.getItem('login'))
+    {
+      this.apiService.deleteUser(sessionStorage.getItem('login')).subscribe();
+      this.OnDisconnect();
+    }
   }
   OnDisconnect() 
   {

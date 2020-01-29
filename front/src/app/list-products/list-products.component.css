@@ -16,3 +16,16 @@ button {
   margin: auto;
   padding: 20px;
 }
+.font-type 
+{
+  font-family: 'Permanent Marker', cursive;
+}
+.card-contenu 
+{
+  text-align: center;
+}
+.btn-rose 
+{
+  background-color: #e35d6a;
+  border-color: #c98276;
+}

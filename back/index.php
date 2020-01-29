@@ -21,7 +21,7 @@ $config = [
 const JWT_SECRET = "makey1234567";
 
 $jwt = new \Slim\Middleware\JwtAuthentication([
-"path" => "/api",
+"path" => array("/api", "/deleteClient"),
 "secure" => false,
 "secret" => JWT_SECRET,
 "passthrough" => ["/login"],
@@ -29,7 +29,7 @@ $jwt = new \Slim\Middleware\JwtAuthentication([
 "algorithm" => ["HS256"],
 "error" => function ($response, $arguments) {    
     $data = array('ERREUR' => 'ERREUR', 'ERREUR' => 'AUTO');
-    return $response->withHeader("Content-Type", "application/json")->getBody()->write(json_encode($data));
+    return $response->withHeader("Contvent-Type", "application/json")->getBody()->write(json_encode($data));
     }
 ]);
 
@@ -130,7 +130,24 @@ $app->post('/register', function ($request, $response, $args) use ($entityManage
     return $response->withJson($error_messages);
 });
 
-$app->delete('/client/{id}', 'deleteClient');
+$app->delete('/deleteClient/{login}', function($request, $response, $args) use ($entityManager)
+{
+    $response = $response->withStatus(400);
+    if (isset($args['login']))
+    {
+        $userRepository = $entityManager->getRepository('Client');
+        $userToDelete = $userRepository->findOneBy(array('login' => $args['login']));
+        if (isset($userToDelete))
+        {
+            $entityManager->remove ($userToDelete);
+            $entityManager->flush();
+            return $response
+                            ->withStatus(200);
+        }
+    }
+    return $response;
+});
+
 $app->post('/login', function ($request, $response, $args) use ($entityManager)
 {
     $body = $request->getParsedBody();
@@ -144,11 +161,11 @@ $app->post('/login', function ($request, $response, $args) use ($entityManager)
         if (isset($userLogged) && password_verify($password, $userLogged->getPassword()))
         {
             $issuedAt = time();
-            $expirationTime = $issuedAt + 60; // jwt valid for 60 seconds from the issued time
+            $expirationTime = $issuedAt + 6000; // jwt valid for 60 seconds from the issued time
             $payload = array(
-            'login' => $login,
-            'iat' => $issuedAt,
-            'exp' => $expirationTime
+                'login' => $login,
+                'iat' => $issuedAt,
+                'exp' => $expirationTime
             );
             $token_jwt = JWT::encode($payload,JWT_SECRET, "HS256");
             

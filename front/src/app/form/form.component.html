@@ -52,7 +52,7 @@
         <label for="passwd">Mot de passe</label>
         <input type="password" id="password" required formControlName="password"  class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Il doit contenir une minuscule, une majuscule, un chiffre et un caractère!" [ngClass]="{'is-invalid': userDetails.controls.password.invalid && (userDetails.controls.password.touched || userDetails.controls.password.dirty), 'is-valid':userDetails.controls.password.valid && userDetails.controls.password.value != ''}"/> 
       </div>
-      <button type="submit" >Valider</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" >Valider</button>
     </form>	
   </div>
 </div>

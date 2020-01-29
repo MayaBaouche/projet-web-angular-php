@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
   {
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('login', this.credentials.controls['username'].value);
+    console.log("BBBB");
     if (sessionStorage.getItem('token') != undefined)  
     {
       this.connected = true;
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
     this.apiService.login(this.credentials.controls['username'].value, this.credentials.controls['password'].value)
       .subscribe(
         response => this.setSession(response.token),
+        err => this.connected = false
       ); 
   }
 

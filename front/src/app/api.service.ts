@@ -7,14 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { Product } from './models/product.model';
 import { Category } from './models/category.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
-const httpGet = {
+const httpHeaders= {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',
     'Access-Control-Allow-Headers': '*',
@@ -46,12 +39,30 @@ export class ApiService {
 
   addUser(user: User): Observable<User>
   {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
     return this.httpClient.post<User>(environment.backend+"/register", user, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
+  deleteUser(login: string)
+  {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem('token')
+      })
+    };
+    return this.httpClient.delete(environment.backend+"/deleteClient/"+login, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
   getProducts(): Observable<Product[]>
   {
     return this.httpClient.get<Product[]>(environment.backend+"/products")
@@ -74,7 +85,7 @@ export class ApiService {
                         .set("categoryName", categoryName)
                         .set("nameFilter", nameFilter); 
     return this.httpClient.get<Product[]>(environment.backend+"/productsFiltered", 
-                                          {headers: httpGet.headers, params: params})
+                                          {headers: httpHeaders.headers, params: params})
       .pipe(
         catchError(this.handleError)
       );

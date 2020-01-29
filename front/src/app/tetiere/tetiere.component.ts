@@ -8,7 +8,7 @@ import { finalize } from 'rxjs/operators';
   styleUrls: [ './tetiere.component.css' ]
 })
 export class TetiereComponent  {
-   qty : number ; 
+    qty : number ; 
     constructor(public store : Store)
     {
        this.store.select(state => state.shoppingCart.shoppingCart).subscribe (u => this.qty = u.length);

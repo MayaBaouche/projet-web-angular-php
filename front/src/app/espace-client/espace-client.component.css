@@ -6,7 +6,7 @@
     margin-top: 15%;
     margin-bottom: 15%;
 }
-.gestion-compte > button 
+button 
 {
     background-color: #eeb0c0;
     color: black;
@@ -15,4 +15,8 @@
 {
     text-align: center;
     background: url("../../assets/bg.jpg");
+}
+h1 
+{
+    color: blanchedalmond;
 }
