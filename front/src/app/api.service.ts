@@ -46,7 +46,6 @@ export class ApiService {
 
   addUser(user: User): Observable<User>
   {
-    console.log("ici");
     return this.httpClient.post<User>(environment.backend+"/register", user, httpOptions)
       .pipe(
         catchError(this.handleError)
@@ -55,7 +54,7 @@ export class ApiService {
 
   getProducts(): Observable<Product[]>
   {
-    return this.httpClient.get<Product[]>(environment.backendProduct)
+    return this.httpClient.get<Product[]>(environment.backend+"/products")
       .pipe(
         catchError(this.handleError)
       );

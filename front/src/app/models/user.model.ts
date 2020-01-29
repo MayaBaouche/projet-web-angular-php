@@ -9,5 +9,4 @@ export class User {
   public login:String = '';
   public password:String = '';
   public adress:String = '';
-  public gender: String = '';
 }

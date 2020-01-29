@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'custom-form',
@@ -17,6 +18,7 @@ export class FormComponent implements OnInit {
 
     @Input() user : User;     
     createdUser: Observable<User>; 
+    test : User;
 
   constructor(public userService: ApiService) {
         
@@ -47,7 +49,6 @@ export class FormComponent implements OnInit {
                                   ,
       phone:  new FormControl('', Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')),
       adress:      new FormControl('', Validators.maxLength(256)),
-      gender:       new FormControl('', Validators.required),
       dialCode:     new FormControl('',Validators.required) 
     });
     }
@@ -63,23 +64,28 @@ export class FormComponent implements OnInit {
     this.isSubmitted = false;
   }
 
-  onSubmit(){
-
-    // sinon on instancie un User et on lui affecte les 
-    // valeurs des champs  
-    this.user.last_name = this.userDetails.controls['last_name'].value; 
-    this.user.first_name = this.userDetails.controls['first_name'].value; 
-    this.user.city = this.userDetails.controls['city'].value; 
-    this.user.country = this.userDetails.controls['country'].value; 
-    this.user.zip_code = this.userDetails.controls['zip_code'].value; 
-    this.user.mail = this.userDetails.controls['mail'].value; 
-    this.user.login = this.userDetails.controls['login'].value; 
-    this.user.password = this.userDetails.controls['password'].value;
-    this.user.phone = this.userDetails.controls['phone'].value;
-    this.user.adress = this.userDetails.controls['adress'].value;
-    this.user.gender = this.userDetails.controls['gender'].value;
-    this.createdUser = this.userService.addUser(this.user);      
-    this.isSubmitted = true; 
+  onSubmit(userData: any){
+   // if invalid, stop
+    if (this.userDetails.invalid) {
+      alert("Un ou plusieurs champs sont incorrects!");
+      return;
+    }
+    else 
+    {      // sinon on instancie un User et on lui affecte les 
+      // valeurs des champs  
+      this.user.last_name = this.userDetails.controls['last_name'].value; 
+      this.user.first_name = this.userDetails.controls['first_name'].value; 
+      this.user.city = this.userDetails.controls['city'].value; 
+      this.user.country = this.userDetails.controls['country'].value; 
+      this.user.zip_code = this.userDetails.controls['zip_code'].value; 
+      this.user.mail = this.userDetails.controls['mail'].value; 
+      this.user.login = this.userDetails.controls['login'].value; 
+      this.user.password = this.userDetails.controls['password'].value;
+      this.user.phone = this.userDetails.controls['phone'].value;
+      this.user.adress = this.userDetails.controls['adress'].value;
+      this.createdUser = this.userService.addUser(this.user);  
+      this.isSubmitted = true; 
+    }
   }
 
 }

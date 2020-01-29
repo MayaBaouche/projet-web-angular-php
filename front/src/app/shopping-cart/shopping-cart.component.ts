@@ -34,15 +34,12 @@ export class ShoppingCartComponent implements OnInit {
 
   onDelClick(article : Product) 
   { 
+    this.total = this.total -  this.products.get(article.idconfiserie);
     this.store.dispatch(new DelProduct(article));
   }
   onAllDelClick() 
   {   
     this.store.dispatch(new DelAllProducts());
-  }
-  delProduct(article : Product) 
-  { 
-    this.store.dispatch(new DelProduct(article)); 
   }
   calculateTotal(id : number, p : number, e : any)
   {

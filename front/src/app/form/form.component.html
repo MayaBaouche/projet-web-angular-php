@@ -4,7 +4,7 @@
       <h4 class="card-title">Inscription</h4>
       <h6>Veuillez saisir vos coordonnées afin de procéder à la création de votre compte.</h6>
     </div> 
-    <form [formGroup]="userDetails" (ngSubmit)="onSubmit()">    
+    <form [formGroup]="userDetails" (ngSubmit)="onSubmit(userDetails.value)">    
       <div class="form-group">
         <label for="lastname">Nom</label>
         <input type="text" id="lastname" formControlName="last_name" class="form-control" required pattern="[A-Za-z]{1,32}" [ngClass]="{'is-invalid': userDetails.controls.last_name.invalid && (userDetails.controls.last_name.touched || userDetails.controls.last_name.dirty), 'is-valid':userDetails.controls.last_name.valid && userDetails.controls.last_name.value != ''}"/>
@@ -52,7 +52,7 @@
         <label for="passwd">Mot de passe</label>
         <input type="password" id="password" required formControlName="password"  class="form-control"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Il doit contenir une minuscule, une majuscule, un chiffre et un caractère!" [ngClass]="{'is-invalid': userDetails.controls.password.invalid && (userDetails.controls.password.touched || userDetails.controls.password.dirty), 'is-valid':userDetails.controls.password.valid && userDetails.controls.password.value != ''}"/> 
       </div>
-      <button type="submit">Valider</button>
+      <button type="submit" >Valider</button>
     </form>	
   </div>
 </div>
@@ -66,32 +66,28 @@
       <div class="card-content">
         <div class="col-12 form">
           <div class="col-12 form-group">
-            <label>Civilité :  </label>
-            <input readonly type="text" class="form-control" placeholder="{{u.gender}}" />
-          </div>
-          <div class="col-12 form-group">
             <label>Votre nom : </label>
-            <input readonly type="text" class="form-control" placeholder="{{u.last_name}}" />
+            <input readonly type="text" class="form-control" placeholder="{{u.nom}}" />
           </div>
           <div class="col-12 form-group">
             <label>Votre prénom :  </label>
-            <input readonly type="text" class="form-control" placeholder="{{u.first_name}}" />
+            <input readonly type="text" class="form-control" placeholder="{{u.prenom}}" />
           </div>
           <div class="col-12 form-group">
             <label> Votre adresse : </label>
-            <input readonly type="text" class="form-control" placeholder="{{u.adress}}" />
+            <input readonly type="text" class="form-control" placeholder="{{u.adresse}}" />
           </div>
           <div class="col-12 form-group">
             <label>Code postal :</label>
-            <input readonly type="text" class="form-control" placeholder="{{u.zip_code}}" />
+            <input readonly type="text" class="form-control" placeholder="{{u.codepostal}}" />
           </div>
           <div class="col-12 form-group">
             <label>Ville :  </label>
-            <input readonly type="text" class="form-control" placeholder="{{u.city}}" />
+            <input readonly type="text" class="form-control" placeholder="{{u.ville}}" />
           </div>
           <div class="col-12 form-group">
             <label>Votre numéro :   </label>
-            <input readonly type="text" class="form-control" placeholder="{{u.phone}}" />
+            <input readonly type="text" class="form-control" placeholder="{{u.telephone}}" />
           </div>
           <div class="col-12 form-group">
             <label>Votre mail :</label>

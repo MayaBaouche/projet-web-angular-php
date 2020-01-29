@@ -12,7 +12,7 @@ import { Store } from '@ngxs/store';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  connected : boolean = true; 
   credentials: FormGroup;
   constructor(private apiService: ApiService, 
               private route: ActivatedRoute, 
@@ -37,15 +37,24 @@ export class LoginComponent implements OnInit {
   {
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('login', this.credentials.controls['username'].value);
+    if (sessionStorage.getItem('token') != undefined)  
+    {
+      this.connected = true;
+      this.router.navigate(['/products']);
+    }
+    else 
+    {
+      this.connected = false; 
+    }
   }
 
   login()
   {
     this.apiService.login(this.credentials.controls['username'].value, this.credentials.controls['password'].value)
       .subscribe(
-        response => this.setSession(response.token)
+        response => this.setSession(response.token),
       ); 
-    this.router.navigate(['/products']);
   }
 
 }
+

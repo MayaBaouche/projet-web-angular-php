@@ -2,6 +2,7 @@
   margin: auto;
   padding: 20px;
   text-align: center; 
+  width: 50%;
 }
 .alert-margin 
 {
@@ -9,6 +10,12 @@
   margin-bottom: 5%;
   margin-left: 10%;
   margin-right: 10%;
-
-
+}
+.button-pad 
+{
+  margin:10px;
+}
+.font-title 
+{
+  font-weight: bold;
 }

@@ -7,16 +7,19 @@
    <nav class="navbar navbar-expand-sm nav-color">
       <ul class="navbar-nav">
         <li>
-          <a class="nav-link nav-color-link" [routerLink]="['/home']">Home</a>
+          <a class="nav-link nav-color-link" [routerLink]="['/home']">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-color-link" [routerLink]="['/products']">Products</a>
+          <a class="nav-link nav-color-link" [routerLink]="['/products']">Nos confiseries</a>
+        </li>
+        <li>
+          <a class="nav-link nav-color-link" [routerLink]="['/recettes']">Nos recettes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-color-link" [routerLink]="['/myspace']">Espace client</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-color-link" [routerLink]="['/shopping-cart']">Cart <span class="badge badge-light" >{{qty}}</span></a>
+          <a class="nav-link nav-color-link" [routerLink]="['/shopping-cart']">Panier <span class="badge badge-light" >{{qty}}</span></a>
         </li> 
       </ul>    
     </nav>

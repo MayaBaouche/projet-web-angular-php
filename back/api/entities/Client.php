@@ -19,84 +19,77 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idclient;
+    public $idclient;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
-    private $nom;
+    public $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
      */
-    private $prenom;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="sexe", type="integer", nullable=false)
-     */
-    private $sexe;
+    public $prenom;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="adresse", type="string", length=256, nullable=true)
      */
-    private $adresse;
+    public $adresse;
 
     /**
      * @var int
      *
      * @ORM\Column(name="codePostal", type="integer", nullable=false)
      */
-    private $codepostal;
+    public $codepostal;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=100, nullable=false)
      */
-    private $ville;
+    public $ville;
 
     /**
      * @var string
      *
      * @ORM\Column(name="pays", type="string", length=100, nullable=false)
      */
-    private $pays;
+    public $pays;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="telephone", type="string", length=12, nullable=true)
      */
-    private $telephone;
+    public $telephone;
 
     /**
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=256, nullable=false)
      */
-    private $mail;
+    public $mail;
 
     /**
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=256, nullable=false)
      */
-    private $login;
+    public $login;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=256, nullable=false)
+     * @ORM\Column(name="password", type="text", length=65535, nullable=false)
      */
-    private $password;
+    public $password;
 
 
     /**
@@ -155,30 +148,6 @@ class Client
     public function getPrenom()
     {
         return $this->prenom;
-    }
-
-    /**
-     * Set sexe.
-     *
-     * @param int $sexe
-     *
-     * @return Client
-     */
-    public function setSexe($sexe)
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
-    /**
-     * Get sexe.
-     *
-     * @return int
-     */
-    public function getSexe()
-    {
-        return $this->sexe;
     }
 
     /**

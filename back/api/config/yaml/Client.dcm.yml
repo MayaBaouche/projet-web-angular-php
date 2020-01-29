@@ -24,11 +24,6 @@ Client:
             length: 100
             options:
                 fixed: false
-        sexe:
-            type: integer
-            nullable: false
-            options:
-                unsigned: false
         adresse:
             type: string
             nullable: true
@@ -72,9 +67,9 @@ Client:
             options:
                 fixed: false
         password:
-            type: string
+            type: text
             nullable: false
-            length: 256
+            length: 65535
             options:
                 fixed: false
     lifecycleCallbacks: {  }

@@ -1,12 +1,14 @@
-<div *ngIf="!connected" class="gestion-compte">
-    <button  type="button" class="btn btn-primary btn-lg btn-block">
-        <a class="nav-link" [routerLink]="['/login']">Se connecter</a>
-    </button>
-    <button  type="button" class="btn btn-primary btn-lg btn-block">
-        <a class="nav-link" [routerLink]="['/registration']">Créer un compte</a>
-    </button>
-</div>
-<div *ngIf="connected"  class="gestion-compte">
-    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="OnDeleteAccount()">Supprimer mon compte</button>
-    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="OnDisconnect()">Se déconnecter</button>
+<div class="bg">
+    <div *ngIf="!connected" class="gestion-compte">
+        <button  type="button" class="btn btn-primary btn-lg btn-block">
+            <a class="nav-link" [routerLink]="['/login']">Se connecter</a>
+        </button>
+        <button  type="button" class="btn btn-primary btn-lg btn-block">
+            <a class="nav-link" [routerLink]="['/registration']">Créer un compte</a>
+        </button>
+    </div>
+    <div *ngIf="connected"  class="gestion-compte">
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="OnDeleteAccount()">Supprimer mon compte</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="OnDisconnect()">Se déconnecter</button>
+    </div>
 </div>

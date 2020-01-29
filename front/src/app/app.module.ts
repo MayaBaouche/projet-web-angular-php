@@ -25,6 +25,7 @@ import { ShoppingCartState } from './common/states/shopping-cart.state';
 
 import { ApiService } from './api.service';
 import { EspaceClientModule } from './espace-client/espace-client.module';
+import { MerciModule } from './merci/merci.module';
 
 const routes: Routes = [  
   { 
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'myspace',
     loadChildren: () => import('./espace-client/espace-client.module').then(m => m.EspaceClientModule)
+  }, 
+  {
+    path: 'merci',
+    loadChildren: () => import('./merci/merci.module').then(m => m.MerciModule)
   },
   {
     path: 'shopping-cart', 
@@ -72,7 +77,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HomeModule, ListProductsModule, FormModule, ReactiveFormsModule, ShoppingCartModule, Error404Module, LoginModule, 
-  EspaceClientModule, PaiementModule, NgxsModule.forRoot([ShoppingCartState]), RouterModule.forRoot(routes)],
+  EspaceClientModule, PaiementModule, MerciModule, NgxsModule.forRoot([ShoppingCartState]), RouterModule.forRoot(routes)],
   declarations: [AppComponent, TetiereComponent, FooterComponent],
   providers: [ApiService],
   bootstrap:    [ AppComponent ]

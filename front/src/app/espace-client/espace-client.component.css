@@ -11,3 +11,8 @@
     background-color: #eeb0c0;
     color: black;
 }
+.bg 
+{
+    text-align: center;
+    background: url("../../assets/bg.jpg");
+}

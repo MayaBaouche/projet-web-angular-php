@@ -89,7 +89,7 @@ $app->post('/register', function ($request, $response, $args) use ($entityManage
     $error_messages = array();
     if($clientRepository->findOneBy(array('login' => $body['login'])) !== null)
     {
-        array_push($error_messages, "mail already used.");
+        array_push($error_messages, "login already used.");
     }
     if($clientRepository->findOneBy(array('mail' => $body['mail'])) !== null)
     {
@@ -107,14 +107,13 @@ $app->post('/register', function ($request, $response, $args) use ($entityManage
     {
         array_push($error_messages, "email missing.");
     } 
-    else 
+    if (empty($error_messages))
     {        
         $newClient = new Client();
         $newClient            
                 ->setPrenom($body['first_name'])
                 ->setNom($body['last_name'])
-                ->setAdresse($body['adress'])            
-                ->setSexe($body['gender'])
+                ->setAdresse($body['adress'])    
                 ->setCodepostal($body['zip_code'])
                 ->setVille($body['city'])
                 ->setPays($body['country'])
@@ -125,12 +124,12 @@ $app->post('/register', function ($request, $response, $args) use ($entityManage
                 
         $entityManager->persist($newClient);
         $entityManager->flush();
-        $response = $response->withStatus(201);
+        return $response->withJSON($newClient)
+                        ->withStatus(201);
     }
     return $response->withJson($error_messages);
 });
 
-$app->put('/client/{id}', 'updateClient');
 $app->delete('/client/{id}', 'deleteClient');
 $app->post('/login', function ($request, $response, $args) use ($entityManager)
 {

@@ -1,29 +1,29 @@
-
-<p *ngIf="!isEmpty"><label>Total {{total}}</label></p>
-<table class="table">
-  <div class="col-4 d-flex align-items-stretch" *ngFor="let p of articles | async">
-    <tr>
-      <td>
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="{{p.img}}" class="card-img">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{p.nom}}</h5>
-                <p class="card-text">{{p.prixunitaire}}</p>
-                <p><input type="number" id="{{p.idconfiserie}}" name="quantity" min="1" max="100" (change)="calculateTotal(p.idconfiserie, p.prixunitaire, $event)"></p>
-                <button class="btn btn-primary btn-lg" (click)="onDelClick(p)">Remove from cart</button>
-              </div>
-            </div>
+<div class="wrapper">
+  <h2>Vos achats</h2>
+  <div class="col-12 align-items-stretch" *ngFor="let p of articles | async">
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{p.img}}" class="card-img">          
+          <button class="btn btn-primary btn-lg" (click)="onDelClick(p)">Retirer</button>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title font-title">{{p.nom}}</h5>
+            <p class="card-text">{{p.description}}</p>
+            <p class="card-text">Prix: {{p.prixunitaire}} €</p>
+            <p>Quantité: 
+              <input type="number" id="{{p.idconfiserie}}" name="quantity" min="0" max="100" value="0" (change)="calculateTotal(p.idconfiserie, p.prixunitaire, $event)">
+            </p>                       
           </div>
         </div>
-      </td>    
-    </tr>  
+      </div>
+    </div>
   </div> 
-</table> 
-
-<button *ngIf="!isEmpty" class="btn btn-primary btn-lg" (click)="onAllDelClick()">Remove all</button>
-<button *ngIf="!isEmpty" class="btn btn-primary btn-lg" (click)="onPayClick()">Procéder au paiement</button>
-<div *ngIf="isEmpty" class="alert alert-info alert-margin">The shopping cart is empty.</div>
+  <p *ngIf="!isEmpty"><label class="font-title">Total : {{total}} €</label></p>
+  <div>
+    <button *ngIf="!isEmpty" class="btn btn-primary btn-lg button-pad" (click)="onAllDelClick()">Vider</button>
+    <button *ngIf="!isEmpty && total > 0" class="btn btn-primary btn-lg" (click)="onPayClick()">Procéder au paiement</button>
+    <div *ngIf="isEmpty" class="alert alert-info alert-margin">Le panier est vide.</div>
+  </div>
+</div>
