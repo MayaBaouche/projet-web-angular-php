@@ -30,11 +30,14 @@ export class ShoppingCartComponent implements OnInit {
       {
           this.total += p; 
       });
+      
+    this.total = parseFloat(this.total.toFixed(2));
   }
 
   onDelClick(article : Product) 
   { 
     this.total = this.total -  this.products.get(article.idconfiserie);
+    this.total = parseFloat(this.total.toFixed(2));
     this.store.dispatch(new DelProduct(article));
   }
   onAllDelClick() 
@@ -49,6 +52,7 @@ export class ShoppingCartComponent implements OnInit {
       {
           this.total += p; 
       });
+      this.total = parseFloat(this.total.toFixed(2));
   }
   onPayClick()
   {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  mer. 29 jan. 2020 à 17:38
+-- Généré le :  ven. 31 jan. 2020 à 08:29
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `chocolats`
 --
+CREATE DATABASE IF NOT EXISTS `chocolats` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `chocolats`;
 
 -- --------------------------------------------------------
 
@@ -70,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `password` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`idClient`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `client`
@@ -95,17 +97,21 @@ CREATE TABLE IF NOT EXISTS `confiserie` (
   `img` varchar(2083) NOT NULL,
   PRIMARY KEY (`idConfiserie`),
   KEY `idCategorie` (`idCategorie`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `confiserie`
 --
 
 INSERT INTO `confiserie` (`idConfiserie`, `nom`, `description`, `idCategorie`, `prixUnitaire`, `img`) VALUES
-(1, 'Mini Rocher', 'Praliné et éclats croustillants', 1, 7.5, 'https://www.jeff-de-bruges.com/media/guide-chocolat/chocolats-blancs/chocolate0-61050100-1477488570/image-1477560403.jpeg'),
-(2, 'Palet MB', 'Puissante ganache de chocolat noir au cacao de Sao Tomé', 1, 7, 'https://www.jeff-de-bruges.com/media/guide-chocolat/chocolats-blancs/chocolate0-19809000-1477488601/image-1477488601.jpeg'),
-(3, 'Feuille', 'Praliné intense aux noisettes, noir 70%', 2, 7.5, 'https://www.jeff-de-bruges.com/media/guide-chocolat/chocolats-noirs/chocolate0-25479900-1477490066/image-1477490066.jpeg'),
-(4, 'Trèfle', 'Praliné noisettes et éclats de biscuits Amaretti, noir 70%', 2, 7, 'https://www.jeff-de-bruges.com/media/guide-chocolat/chocolats-noirs/chocolate0-39393700-1477490534/image-1477490534.jpeg');
+(5, 'Boîte Chacha Swiss Luxury Selection 230g', 'Dégustez les plus fins des chocolats préparés avec passion et savoir faire par nos Maîtres Chocolatiers Suisses pour un moment de gourmandise raffinée.', 2, 12.9, 'https://www.lindt.fr/shop/media/catalog/product/cache/2/thumbnail/405x400/9df78eab33525d08d6e5fb8d27136e95/t/e/test-swiss-luxury_1.png'),
+(6, 'Boîte Cœur Chacha Lait 62g', 'Offrez ce joli coeur contenant 5 bouchées Chacha Lait passionnément fondantes. Boîte en métal.', 3, 4.99, 'https://www.lindt.fr/shop/media/catalog/product/cache/2/thumbnail/405x400/9df78eab33525d08d6e5fb8d27136e95/l/i/lindt_lindor_coeur_metal_62g_2.png'),
+(7, 'Cornet Chacha Lait 337g - Noël', 'Croquez sa délicate coquille. Son cœur passionnément fondant vous emporte comme dans un rêve, pour un petit moment de bonheur rien qu’à vous.\r\n\r\nPour les fêtes de Noël, craquez pour Chacha Lait : un cœur passionnément fondant, enrobé d’une délicate coquille de chocolat au lait.', 3, 6.23, 'https://www.lindt.fr/shop/media/catalog/product/cache/2/thumbnail/405x400/9df78eab33525d08d6e5fb8d27136e95/c/o/cornet-lindor-lait-337g.png'),
+(8, 'Boîte Chacha Diamant 468g', 'Champs-Élysées de Chacha, c\'est toute la magie des Maîtres Chocolatiers Chacha : le plus fin des chocolats dans le plus féerique des coffrets.', 1, 9.73, 'https://www.lindt.fr/shop/media/catalog/product/cache/2/thumbnail/405x400/9df78eab33525d08d6e5fb8d27136e95/b/o/bo_te-lindt-champs-_lys_es-diamant-468g.png'),
+(9, 'Tablette Chacha Swiss Premium Chocolate Blanc Amandes 300g', 'Une recette élaborée en Suisse dans le respect de la recette originale des Maîtres Chocolatiers Chacha . Laissez-vous séduire par les amandes entières délicatement grillées et les éclats de nougats, enrobés de Chocolat Blanc Chacha extra-fin.', 1, 5.99, 'https://www.lindt.fr/shop/media/catalog/product/cache/2/thumbnail/405x400/9df78eab33525d08d6e5fb8d27136e95/p/r/premium_blanc_amandes.png'),
+(10, 'Création Dessert - Café Gourmand 193g', 'Pour accompagner votre café d\'un plaisir raffiné et gourmand, les Maîtres Chocolatiers Lindt ont allié passion chocolatière et inspiration pâtissière afin de créer Création Dessert Café Gourmand, de fines et irrésistibles bouchées de chocolat.', 1, 6.99, 'https://www.lindt.fr/shop/media/catalog/product/cache/2/thumbnail/405x400/9df78eab33525d08d6e5fb8d27136e95/l/i/lindt_boite_creation_cafe_gourmand_1.png'),
+(11, 'Boîte carrée 16 petites meringues', 'Craquez pour ces 4 recettes gourmandes et délicates : les petites meringues ! ', 2, 14.45, 'https://www.jeff-de-bruges.com/media/collection/collection-classique/boite-carree-25-petites-meringues/imagesHTML-1549553050-0.jpeg'),
+(12, 'Grande cagette', 'Pour les fans de truffes, régalez-vous avec notre cagette grand format garnie de nos différentes recettes au cacao des quatre coins du monde ! ', 5, 48.5, 'https://www.jeff-de-bruges.com/media/collection/truffes-de-bruxelles/grande-cagette/imagesHTML-1572520312-0.jpeg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
